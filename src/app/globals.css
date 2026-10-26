@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/*
+ * DNI design tokens.
+ * Warm paper neutrals, an indigo accent (aizome) for primary actions and AI
+ * surfaces, and vermilion (shu) reserved for risk and conflict. Status colours
+ * carry meaning only; nothing is decorative.
+ */
+@theme {
+  --font-sans: "Inter Variable", "Noto Sans JP", "Hiragino Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: #f6f5f2;
+  --color-surface: #ffffff;
+  --color-sunken: #efede8;
+  --color-ink: #16181d;
+  --color-ink-2: #474c56;
+  --color-ink-3: #7a7f89;
+  --color-line: #e4e1da;
+  --color-line-strong: #cdc9c0;
+
+  --color-accent: #24408f;
+  --color-accent-strong: #1a2f6e;
+  --color-accent-tint: #edf0f8;
+
+  --color-shu: #b3402c;
+  --color-shu-tint: #fbefec;
+  --color-ok: #2c6a4a;
+  --color-ok-tint: #e9f3ed;
+  --color-warn: #8f5509;
+  --color-warn-tint: #fbf1e0;
+
+  --radius-card: 0.75rem;
+  --shadow-card: 0 1px 0 rgb(22 24 29 / 0.04), 0 1px 3px rgb(22 24 29 / 0.04);
+  --shadow-pop: 0 8px 28px rgb(22 24 29 / 0.12);
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    background: var(--color-accent-tint);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+@layer components {
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+  .eyebrow {
+    font-size: var(--text-2xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    font-weight: 600;
+  }
+  .input {
+    width: 100%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line-strong);
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    transition:
+      border-color 120ms,
+      box-shadow 120ms;
+  }
+  .input::placeholder {
+    color: var(--color-ink-3);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-tint);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
